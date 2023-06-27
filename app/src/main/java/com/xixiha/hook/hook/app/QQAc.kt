@@ -3,7 +3,7 @@ package com.xixiha.hook.hook.app
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 
 /** 腾讯动漫 */
-object QQAc: YukiBaseHooker() {
+object QQAc : YukiBaseHooker() {
     override fun onHook() {
         findClass("com.qq.e.comm.constants.CustomPkgConstants").hook {
             injectMember {

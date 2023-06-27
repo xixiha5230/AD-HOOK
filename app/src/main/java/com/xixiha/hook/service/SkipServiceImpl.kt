@@ -48,14 +48,20 @@ class SkipServiceImpl(private val service: SkipService) {
     init {
         createNotificationChannel()
         notification = if (context.isAccessibilitySettingsOn(SERVICE_NAME)) {
-            createNotification(context.getString(R.string.accessibility_notification).format(skipCount))
+            createNotification(
+                context.getString(R.string.accessibility_notification).format(skipCount)
+            )
         } else {
             createNotification(context.getString(R.string.close_accessibilityservice))
         }
         service.startForeground(1, notification)
         checkLanguage()
         if (context.isAccessibilitySettingsOn(SERVICE_NAME) && !show)
-            Toast.makeText(context, context.getString(R.string.service_open_success), Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                context,
+                context.getString(R.string.service_open_success),
+                Toast.LENGTH_SHORT
+            ).show()
         show = true
     }
 
@@ -74,7 +80,11 @@ class SkipServiceImpl(private val service: SkipService) {
     private fun success() {
         skipCount++
         if (context.getConfig().getBoolean(Data.hookTip.key, true))
-            Toast.makeText(context, context.getString(R.string.tip_skip_success), Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                context,
+                context.getString(R.string.tip_skip_success),
+                Toast.LENGTH_SHORT
+            ).show()
         refresh()
     }
 
@@ -109,7 +119,7 @@ class SkipServiceImpl(private val service: SkipService) {
             if (event.source?.let { findSkipButtonByText(it) } == true) {
                 success()
             }
-        } catch (e : Exception) {
+        } catch (e: Exception) {
             e.printStackTrace()
         }
     }
@@ -117,7 +127,9 @@ class SkipServiceImpl(private val service: SkipService) {
     fun refresh() {
         checkLanguage()
         notification = if (context.isAccessibilitySettingsOn(SERVICE_NAME)) {
-            createNotification(context.getString(R.string.accessibility_notification).format(skipCount))
+            createNotification(
+                context.getString(R.string.accessibility_notification).format(skipCount)
+            )
         } else {
             createNotification(context.getString(R.string.close_accessibilityservice))
         }
@@ -126,7 +138,11 @@ class SkipServiceImpl(private val service: SkipService) {
 
     fun onInterrupt() {
         notification = createNotification(context.getString(R.string.close_accessibilityservice))
-        Toast.makeText(context, context.getString(R.string.close_accessibilityservice), Toast.LENGTH_SHORT).show()
+        Toast.makeText(
+            context,
+            context.getString(R.string.close_accessibilityservice),
+            Toast.LENGTH_SHORT
+        ).show()
         service.startForeground(1, notification)
     }
 
@@ -161,7 +177,8 @@ class SkipServiceImpl(private val service: SkipService) {
 
     /** 创建通知渠道 */
     private fun createNotificationChannel() {
-        val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val notificationManager =
+            context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         if (notificationManager.getNotificationChannel(CHANNEL_ID) != null) return
         val channelName = context.getString(R.string.app_name)
         val descriptionText = "常驻通知"
@@ -180,7 +197,7 @@ class SkipServiceImpl(private val service: SkipService) {
         notificationManager.createNotificationChannel(channel)
     }
 
-    private fun findSkipButtonById(nodeInfo: AccessibilityNodeInfo) : Boolean {
+    private fun findSkipButtonById(nodeInfo: AccessibilityNodeInfo): Boolean {
         val id = FindId.fromPackageName(packageName.toString()) ?: return false
         val list = nodeInfo.findAccessibilityNodeInfosByViewId(id["id"].toString())
         if (list.isNotEmpty()) {
@@ -206,10 +223,15 @@ class SkipServiceImpl(private val service: SkipService) {
         var list = nodeInfo.findAccessibilityNodeInfosByText("跳过")
         if (list.isNotEmpty()) {
             for (node in list) {
-                val text = node.text.trim().replace(Regex("[\nsS秒]", RegexOption.MULTILINE),"")
+                val text = node.text.trim().replace(Regex("[\nsS秒]", RegexOption.MULTILINE), "")
                 val className = node.className.toString().toLowerCase(Locale.getDefault())
-                if (className == "android.widget.textview" || className.toLowerCase(Locale.getDefault()).contains("button")) {
-                    if (text == "跳过" || text == "跳过广告" || textRegx1.matches(text) || textRegx2.matches(text) || textRegx3.matches(text)) {
+                if (className == "android.widget.textview" || className.toLowerCase(Locale.getDefault())
+                        .contains("button")
+                ) {
+                    if (text == "跳过" || text == "跳过广告" || textRegx1.matches(text) || textRegx2.matches(
+                            text
+                        ) || textRegx3.matches(text)
+                    ) {
                         if (time != eventTime && eventTime - time > 800) {
                             skip(node)
                             time = eventTime
@@ -225,7 +247,9 @@ class SkipServiceImpl(private val service: SkipService) {
             for (node in list) {
                 val text = node.text.trim()
                 val className = node.className.toString().toLowerCase(Locale.getDefault())
-                if (className == "android.widget.textview" || className.toLowerCase(Locale.getDefault()).contains("button")) {
+                if (className == "android.widget.textview" || className.toLowerCase(Locale.getDefault())
+                        .contains("button")
+                ) {
                     if (text == "我知道了" || text == "知道了") {
                         if (time != eventTime && eventTime - time > 800) {
                             skip(node)
@@ -242,7 +266,9 @@ class SkipServiceImpl(private val service: SkipService) {
             for (node in list) {
                 val text = node.text.trim()
                 val className = node.className.toString().toLowerCase(Locale.getDefault())
-                if (className == "android.widget.textview" || className.toLowerCase(Locale.getDefault()).contains("button")) {
+                if (className == "android.widget.textview" || className.toLowerCase(Locale.getDefault())
+                        .contains("button")
+                ) {
                     if (text == "签到") {
                         if (time != eventTime && eventTime - time > 800) {
                             skip(node)

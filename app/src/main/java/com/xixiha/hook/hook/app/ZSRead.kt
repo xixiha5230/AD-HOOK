@@ -8,7 +8,7 @@ import com.highcapable.yukihookapi.hook.type.android.ApplicationClass
 import com.xixiha.hook.hook.sdk.Pangle
 
 /** 追书小说阅读 */
-object ZSRead: YukiBaseHooker() {
+object ZSRead : YukiBaseHooker() {
     override fun onHook() {
         findClass("com.wrapper.proxyapplication.WrapperProxyApplication").hook {
             injectMember {
@@ -23,7 +23,12 @@ object ZSRead: YukiBaseHooker() {
                             method { name = "onCreate" }
                             afterHook {
                                 val application = instance<Application>()
-                                val intent = Intent(application, "com.biquge.ebook.app.ui.activity.MainActivity".toClass(appClassLoader))
+                                val intent = Intent(
+                                    application,
+                                    "com.biquge.ebook.app.ui.activity.MainActivity".toClass(
+                                        appClassLoader
+                                    )
+                                )
                                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                                 application.startActivity(intent)
                             }

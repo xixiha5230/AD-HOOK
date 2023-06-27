@@ -5,7 +5,7 @@ import android.content.Intent
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 
 /** QQ阅读 */
-object QQReader: YukiBaseHooker() {
+object QQReader : YukiBaseHooker() {
     override fun onHook() {
         findClass("com.qq.reader.activity.SplashActivity").hook {
             injectMember {

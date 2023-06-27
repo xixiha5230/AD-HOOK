@@ -15,7 +15,7 @@ class BootReceiver : BroadcastReceiver() {
                 context?.runService()
             }
 
-            else -> intent?.action?.let { Log.d("BootReceiver",it) }
+            else -> intent?.action?.let { Log.d("BootReceiver", it) }
         }
     }
 }

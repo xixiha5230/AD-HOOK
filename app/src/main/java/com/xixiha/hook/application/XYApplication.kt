@@ -10,7 +10,6 @@ import com.xixiha.hook.utils.HotFixUtils.Companion.DEX_FILE
 import com.xixiha.hook.utils.Update.deleteOld
 import java.io.File
 
-
 class XYApplication : ModuleApplication() {
     override fun onCreate() {
         super.onCreate()

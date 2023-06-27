@@ -14,7 +14,11 @@ import java.lang.reflect.Field
  * @author liuxiaobo
  */
 class HotFixUtils {
-    @Throws(IllegalAccessException::class, NoSuchFieldException::class, ClassNotFoundException::class)
+    @Throws(
+        IllegalAccessException::class,
+        NoSuchFieldException::class,
+        ClassNotFoundException::class
+    )
     fun doHotFix(classLoader: ClassLoader) {
         if (!DEX_FILE.exists()) {
             Log.e("热更新补丁目录不存在")
@@ -64,7 +68,7 @@ class HotFixUtils {
                     FileHelper.unzip(file.path, DEX_FILE.path)
                     file.delete()
                     return null
-                } catch (e : Exception) {
+                } catch (e: Exception) {
                     e.printStackTrace()
                 }
             }
@@ -92,7 +96,8 @@ class HotFixUtils {
         val i: Int = java.lang.reflect.Array.getLength(pathElements) // 原dex数组长度
         val j: Int = java.lang.reflect.Array.getLength(dexElements) // 补丁dex数组长度
         val k = i + j // 总数组长度（原dex数组长度 + 补丁dex数组长度)
-        val result: Any = java.lang.reflect.Array.newInstance(componentType!!, k) // 创建一个类型为componentType，长度为k的新数组
+        val result: Any =
+            java.lang.reflect.Array.newInstance(componentType!!, k) // 创建一个类型为componentType，长度为k的新数组
         System.arraycopy(dexElements, 0, result, 0, j) // 补丁dex数组在前
         System.arraycopy(pathElements, 0, result, j, i) // 原dex数组在后
         return result
@@ -109,7 +114,13 @@ class HotFixUtils {
      * @throws SecurityException
      */
     @SuppressLint("DiscouragedPrivateApi")
-    @Throws(ClassNotFoundException::class, NoSuchFieldException::class, IllegalAccessException::class, IllegalArgumentException::class, SecurityException::class)
+    @Throws(
+        ClassNotFoundException::class,
+        NoSuchFieldException::class,
+        IllegalAccessException::class,
+        IllegalArgumentException::class,
+        SecurityException::class
+    )
     private fun getDexElements(classLoader: ClassLoader): Any {
         // 获取BaseDexClassLoader，是PathClassLoader以及DexClassLoader的父类
         val baseDexClassLoaderClazz = Class.forName(NAME_BASE_DEX_CLASS_LOADER)
@@ -135,7 +146,12 @@ class HotFixUtils {
      * @throws SecurityException
      */
     @SuppressLint("DiscouragedPrivateApi")
-    @Throws(ClassNotFoundException::class, NoSuchFieldException::class, IllegalAccessException::class, SecurityException::class)
+    @Throws(
+        ClassNotFoundException::class,
+        NoSuchFieldException::class,
+        IllegalAccessException::class,
+        SecurityException::class
+    )
     private fun setDexElements(classLoader: ClassLoader, value: Any) {
         // 获取BaseDexClassLoader，是PathClassLoader以及DexClassLoader的父类
         val baseDexClassLoaderClazz = Class.forName(NAME_BASE_DEX_CLASS_LOADER)
@@ -158,6 +174,7 @@ class HotFixUtils {
         const val DEX_SUFFIX = ".dex"
         private const val APK_SUFFIX = ".apk"
         private const val ZIP_SUFFIX = ".zip"
+
         @SuppressLint("SdCardPath")
         val DEX_FILE = File("/data/user/0/com.xixiha.hook/files/patch")
         private const val OPTIMIZE_DEX_DIR = "oat"

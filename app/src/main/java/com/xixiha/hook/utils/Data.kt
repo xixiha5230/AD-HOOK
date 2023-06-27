@@ -30,7 +30,9 @@ object Data {
     private var isRoot: Boolean = false
     private var result: BufferedReader? = null
 
-    const val QQ_GROUP = "mqqopensdkapi://bizAgent/qm/qr?url=https%3A%2F%2Fqm.qq.com%2Fcgi-bin%2Fqm%2Fqr%3Fk%3DrrPSIlmQfYaZAlZuYH058gxUzEEKY00y%26jump_from%3D%26auth%3D%26app_name%3D%26authSig%3D2YtvxFdMkwUaQfxU%2FSjV5zDBQMTptBWbBaFeivt3FQXrdorfW9iq4fRDljE3V3At%26source_id%3D3_40001"
+    const val QQ_GROUP =
+        "mqqopensdkapi://bizAgent/qm/qr?url=https%3A%2F%2Fqm.qq.com%2Fcgi-bin%2Fqm%2Fqr%3Fk%3DrrPSIlmQfYaZAlZuYH058gxUzEEKY00y%26jump_from%3D%26auth%3D%26app_name%3D%26authSig%3D2YtvxFdMkwUaQfxU%2FSjV5zDBQMTptBWbBaFeivt3FQXrdorfW9iq4fRDljE3V3At%26source_id%3D3_40001"
+
     /** 获取项目编译完成的时间戳 (当前本地时间) */
     val buildTime: String = format.format(Date(YukiHookAPI.Status.compiledTimestamp))
     val global: PrefsData<Boolean> = PrefsData("global", true)
@@ -85,7 +87,7 @@ object Data {
             mStringColonSplitter.setString(settingValue)
             while (mStringColonSplitter.hasNext()) {
                 val accessibilityService = mStringColonSplitter.next()
-                if (accessibilityService.equals(service,true)) {
+                if (accessibilityService.equals(service, true)) {
                     return true
                 }
             }
@@ -112,7 +114,7 @@ object Data {
                 }
             }
             return false
-        } catch (e : Exception) {
+        } catch (e: Exception) {
             process = null
             os = null
             e.printStackTrace()
@@ -130,7 +132,7 @@ object Data {
             os?.flush()
             Thread.sleep(200)
             true
-        } catch (e : Exception) {
+        } catch (e: Exception) {
             isRoot = false
             process = null
             e.printStackTrace()
@@ -145,15 +147,28 @@ object Data {
             if (runAsRoot(cmd)) {
                 if (checkSelfPermission(Manifest.permission.WRITE_SECURE_SETTINGS) == PackageManager.PERMISSION_GRANTED) {
                     // 防止关闭其他正在运行的无障碍服务
-                    val list = Settings.Secure.getString(contentResolver, Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES).trim()
+                    val list = Settings.Secure.getString(
+                        contentResolver,
+                        Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES
+                    ).trim()
                     if (list.isNotEmpty()) {
-                        Settings.Secure.putString(contentResolver,
-                            Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES,"${list}:com.xixiha.hook/$SERVICE_NAME")
+                        Settings.Secure.putString(
+                            contentResolver,
+                            Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES,
+                            "${list}:com.xixiha.hook/$SERVICE_NAME"
+                        )
                     } else {
-                        Settings.Secure.putString(contentResolver,
-                            Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES,"com.xixiha.hook/$SERVICE_NAME")
+                        Settings.Secure.putString(
+                            contentResolver,
+                            Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES,
+                            "com.xixiha.hook/$SERVICE_NAME"
+                        )
                     }
-                    Settings.Secure.putString(contentResolver, Settings.Secure.ACCESSIBILITY_ENABLED, "1")
+                    Settings.Secure.putString(
+                        contentResolver,
+                        Settings.Secure.ACCESSIBILITY_ENABLED,
+                        "1"
+                    )
                 } else {
                     cmd.clear()
                     cmd.add("settings put secure enabled_accessibility_services com.xixiha.hook/$SERVICE_NAME")
@@ -171,14 +186,23 @@ object Data {
             if (runAsRoot(cmd)) {
                 if (checkSelfPermission(Manifest.permission.WRITE_SECURE_SETTINGS) == PackageManager.PERMISSION_GRANTED) {
                     // 防止关闭其他正在运行的无障碍服务
-                    val list = Settings.Secure.getString(contentResolver, Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES)
-                        .replace("com.xixiha.hook/$SERVICE_NAME:","")
-                        .replace(":com.xixiha.hook/$SERVICE_NAME","")
-                        .replace("com.xixiha.hook/$SERVICE_NAME","").trim()
+                    val list = Settings.Secure.getString(
+                        contentResolver,
+                        Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES
+                    )
+                        .replace("com.xixiha.hook/$SERVICE_NAME:", "")
+                        .replace(":com.xixiha.hook/$SERVICE_NAME", "")
+                        .replace("com.xixiha.hook/$SERVICE_NAME", "").trim()
                     if (list.isNotEmpty()) {
-                        Settings.Secure.putString(contentResolver,
-                            Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES,list)
-                        Settings.Secure.putString(contentResolver, Settings.Secure.ACCESSIBILITY_ENABLED, "1")
+                        Settings.Secure.putString(
+                            contentResolver,
+                            Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES, list
+                        )
+                        Settings.Secure.putString(
+                            contentResolver,
+                            Settings.Secure.ACCESSIBILITY_ENABLED,
+                            "1"
+                        )
                     } else {
                         cmd.clear()
                         cmd.add("settings delete secure enabled_accessibility_services")
@@ -214,7 +238,7 @@ object Data {
             outputStream.write(jsonObject.toString().toByteArray(Charsets.UTF_8))
             outputStream.flush()
             outputStream.close()
-        } catch (e : Exception) {
+        } catch (e: Exception) {
             e.printStackTrace()
         }
     }
@@ -227,9 +251,9 @@ object Data {
             inputStream.read(byte)
             inputStream.close()
             JSONObject(String(byte))
-        } catch (e : IOException) {
+        } catch (e: IOException) {
             JSONObject()
-        } catch (e : JSONException) {
+        } catch (e: JSONException) {
             JSONObject()
         }
     }
@@ -241,7 +265,7 @@ object Data {
     fun JSONObject.getBoolean(key: String, value: Boolean = true): Boolean {
         return try {
             getBoolean(key)
-        } catch (e : JSONException) {
+        } catch (e: JSONException) {
             value
         }
     }
@@ -253,7 +277,7 @@ object Data {
     fun JSONObject.getInt(key: String, value: Int = 0): Int {
         return try {
             getInt(key)
-        } catch (e : JSONException) {
+        } catch (e: JSONException) {
             value
         }
     }

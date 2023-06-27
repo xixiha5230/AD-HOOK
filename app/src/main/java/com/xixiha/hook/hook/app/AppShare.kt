@@ -12,8 +12,10 @@ object AppShare : YukiBaseHooker() {
                 method { name = "a" }
                 replaceUnit {
                     val activity = instance<Activity>()
-                    val intent = Intent(activity, "info.muge.appshare.view.main.MainActivity".toClass(appClassLoader))
-                        .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    val intent = Intent(
+                        activity,
+                        "info.muge.appshare.view.main.MainActivity".toClass(appClassLoader)
+                    ).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                     activity.startActivity(intent)
                     activity.finish()
                 }

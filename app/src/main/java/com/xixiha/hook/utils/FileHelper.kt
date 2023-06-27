@@ -25,7 +25,11 @@ object FileHelper {
                 if (ze.isDirectory) continue
                 val out = FileOutputStream(file)
                 out.use {
-                    while (zis.read(buffer).also { it1 -> count = it1 } != -1) it.write(buffer, 0, count)
+                    while (zis.read(buffer).also { it1 -> count = it1 } != -1) it.write(
+                        buffer,
+                        0,
+                        count
+                    )
                 }
             }
         } catch (e: IOException) {

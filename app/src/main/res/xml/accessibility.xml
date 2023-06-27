@@ -7,4 +7,4 @@
                        android:canRetrieveWindowContent="true"
                        android:description="@string/accessibility_description"
                        android:notificationTimeout="0"
-                       android:settingsActivity="com.hujiayucc.hook.ui.activity.MainActivity" />
+                       android:settingsActivity="com.xixiha.hook.ui.activity.MainActivity" />

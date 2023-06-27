@@ -1,7 +1,7 @@
 <!--suppress HtmlDeprecatedAttribute -->
 <div align="center">
 
-<img width="160" src="https://raw.githubusercontent.com/Xposed-Modules-Repo/com.hujiayucc.hook/main/imgs/icon.png" alt="logo">
+<img width="160" src="https://raw.githubusercontent.com/Xposed-Modules-Repo/com.xixiha.hook/main/imgs/icon.png" alt="logo">
 
 # Fuck AD
 
@@ -54,10 +54,10 @@
 #### 微信/支付宝/QQ
 
 <div align="center" style="padding: 0">
-<img width="40%" src="https://raw.githubusercontent.com/Xposed-Modules-Repo/com.hujiayucc.hook/main/imgs/WeChat.png" alt="logo">
-<img width="40%" src="https://raw.githubusercontent.com/Xposed-Modules-Repo/com.hujiayucc.hook/main/imgs/Alipay.jpg" alt="logo">
-<img width="40%" src="https://raw.githubusercontent.com/Xposed-Modules-Repo/com.hujiayucc.hook/main/imgs/QQ.png" alt="logo">
-<img width="40%" src="https://raw.githubusercontent.com/Xposed-Modules-Repo/com.hujiayucc.hook/main/imgs/wallet.png" alt="logo">
+<img width="40%" src="https://raw.githubusercontent.com/Xposed-Modules-Repo/com.xixiha.hook/main/imgs/WeChat.png" alt="logo">
+<img width="40%" src="https://raw.githubusercontent.com/Xposed-Modules-Repo/com.xixiha.hook/main/imgs/Alipay.jpg" alt="logo">
+<img width="40%" src="https://raw.githubusercontent.com/Xposed-Modules-Repo/com.xixiha.hook/main/imgs/QQ.png" alt="logo">
+<img width="40%" src="https://raw.githubusercontent.com/Xposed-Modules-Repo/com.xixiha.hook/main/imgs/wallet.png" alt="logo">
 </div>
 
 ### License

@@ -5,13 +5,13 @@ plugins {
 }
 
 android {
-    namespace 'com.hujiayucc.hook'
+    namespace 'com.xixiha.hook'
     compileSdk 33
 
     //noinspection GroovyUnusedAssignment
     def verCode = new Random()
     defaultConfig {
-        applicationId "com.hujiayucc.hook"
+        applicationId "com.xixiha.hook"
         minSdk 28
         targetSdk 33
         // 别问，问就是2020对我来说很重要
@@ -28,7 +28,7 @@ android {
             buildConfigField "int", "HOT_VERSION", "$versionCode"
             buildConfigField "String", "HOT_NAME", "\"$versionName\""
         }
-        buildConfigField "String", "SERVICE_NAME", '"com.hujiayucc.hook.service.SkipService"'
+        buildConfigField "String", "SERVICE_NAME", '"com.xixiha.hook.service.SkipService"'
         buildConfigField "String", "TAG", '"Fuck AD"'
         buildConfigField "String", "CHANNEL_ID", '"auto_skip1"'
 

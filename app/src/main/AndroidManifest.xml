@@ -45,7 +45,7 @@
                 android:resource="@array/xposed_scope" />
 
         <activity
-                android:name="com.hujiayucc.hook.ui.activity.MainActivity"
+                android:name="com.xixiha.hook.ui.activity.MainActivity"
                 android:process=":MainActivity"
                 android:exported="true"
                 android:configChanges="uiMode"
@@ -60,7 +60,7 @@
         </activity>
 
         <activity-alias
-                android:name="com.hujiayucc.hook.ui.activity.Home"
+                android:name="com.xixiha.hook.ui.activity.Home"
                 android:process=":MainActivity"
                 android:enabled="true"
                 android:exported="true"
@@ -68,7 +68,7 @@
                 android:label="@string/app_name"
                 android:screenOrientation="portrait"
                 android:windowSoftInputMode="stateAlwaysVisible"
-                android:targetActivity="com.hujiayucc.hook.ui.activity.MainActivity">
+                android:targetActivity="com.xixiha.hook.ui.activity.MainActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -96,7 +96,7 @@
             <intent-filter>
                 <!-- 系统启动完成后会调用-->
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
-                <action android:name="com.hujiayucc.hook.service.StartService" />
+                <action android:name="com.xixiha.hook.service.StartService" />
             </intent-filter>
         </receiver>
     </application>

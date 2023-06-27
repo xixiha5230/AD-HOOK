@@ -51,7 +51,6 @@ android {
             // 开启资源压缩
             shrinkResources true
             versionNameSuffix "-release"
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
 
         debug {
@@ -59,7 +58,6 @@ android {
             // 开启资源压缩
             shrinkResources true
             versionNameSuffix "-debug"
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {

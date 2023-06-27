@@ -29,7 +29,7 @@ android {
             buildConfigField "String", "HOT_NAME", "\"$versionName\""
         }
         buildConfigField "String", "SERVICE_NAME", '"com.xixiha.hook.service.SkipService"'
-        buildConfigField "String", "TAG", '"Fuck AD"'
+        buildConfigField "String", "TAG", '"AD HOOK"'
         buildConfigField "String", "CHANNEL_ID", '"auto_skip1"'
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -39,9 +39,9 @@ android {
         variant ->
             variant.outputs.configureEach {
                 if (variant.versionName.contains("debug"))
-                    outputFileName = "Fk AD ${variant.versionName}.apk"
+                    outputFileName = "AD HOOK DEBUG ${variant.versionName}.apk"
                 else
-                    outputFileName = "Fuck AD ${variant.versionName}.apk"
+                    outputFileName = "AD HOOK ${variant.versionName}.apk"
             }
     }
 

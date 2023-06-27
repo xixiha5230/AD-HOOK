@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Fuck AD</string>
+    <string name="app_name">AD HOOK</string>
     <string name="menu_global">全局设置</string>
     <string name="not_active">插件未激活</string>
     <string name="is_active">插件已激活</string>

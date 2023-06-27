@@ -28,5 +28,5 @@ dependencyResolutionManagement {
         maven { url 'https://artifact.bytedance.com/repository/pangle' }
     }
 }
-rootProject.name = "Fuck AD"
+rootProject.name = "AD HOOK"
 include ':app'
